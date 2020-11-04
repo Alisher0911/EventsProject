@@ -1,0 +1,8 @@
+/Users/alisher/Projects/Events/Events.Core/bin/Release/netstandard2.1/Events.Core.deps.json
+/Users/alisher/Projects/Events/Events.Core/bin/Release/netstandard2.1/Events.Core.dll
+/Users/alisher/Projects/Events/Events.Core/bin/Release/netstandard2.1/Events.Core.pdb
+/Users/alisher/Projects/Events/Events.Core/obj/Release/netstandard2.1/Events.Core.AssemblyInfoInputs.cache
+/Users/alisher/Projects/Events/Events.Core/obj/Release/netstandard2.1/Events.Core.AssemblyInfo.cs
+/Users/alisher/Projects/Events/Events.Core/obj/Release/netstandard2.1/Events.Core.csproj.CoreCompileInputs.cache
+/Users/alisher/Projects/Events/Events.Core/obj/Release/netstandard2.1/Events.Core.dll
+/Users/alisher/Projects/Events/Events.Core/obj/Release/netstandard2.1/Events.Core.pdb

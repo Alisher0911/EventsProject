@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header text-center">
+      Add New Event
+  </div>
+  <div class="card-body">
+      <form [formGroup]="addEventForm" (ngSubmit)='onSubmit()'>
+        <div class="form-group col-12">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" formControlName="Name" required minlength="5">
+
+        </div>
+
+        <div class="form-group col-12">
+          <label for="description">Desctiption</label>
+          <textarea class="form-control" rows="3" id="inputlg" formControlName="Description" required maxlength="500"></textarea>
+        </div>
+
+        <div class="form-group col-12">
+          <label for="place">Place</label>
+          <input type="text" class="form-control" formControlName="Place" required maxlength="200">
+        </div>
+
+        <div class="form-group col-12">
+          <label for="sdate">Start Date</label>
+          <input type="text" placeholder="Choose Date" class="form-control" formControlName="StartDate" bsDatepicker [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }">
+        </div>
+
+        <div class="form-group col-12">
+          <label>Photo</label>
+          <div class="photo-control">
+            <button class="mt-5" type="button">Upload</button>
+          </div>
+        </div>
+
+        <div class="form-group col-12 text-center">
+          <button type="submit" class="btn btn-primary mr-2">Save</button>
+          <button type="reset" class="btn btn-primary">Reset</button>
+        </div>
+      </form>
+  </div>
+</div>

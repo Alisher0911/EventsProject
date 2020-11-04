@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.API", "Events.API\Events.API.csproj", "{1B8899FB-C195-4EB8-BF80-4466AB7B6BBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Core", "Events.Core\Events.Core.csproj", "{D5FE001F-8F06-4613-8F33-1C53DEF5A0BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events.Infrastructure", "Events.Infrastructure\Events.Infrastructure.csproj", "{3AE2BF72-EE95-4B44-B3D8-E4BBBDBFB086}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B8899FB-C195-4EB8-BF80-4466AB7B6BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B8899FB-C195-4EB8-BF80-4466AB7B6BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B8899FB-C195-4EB8-BF80-4466AB7B6BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B8899FB-C195-4EB8-BF80-4466AB7B6BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5FE001F-8F06-4613-8F33-1C53DEF5A0BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FE001F-8F06-4613-8F33-1C53DEF5A0BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FE001F-8F06-4613-8F33-1C53DEF5A0BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FE001F-8F06-4613-8F33-1C53DEF5A0BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE2BF72-EE95-4B44-B3D8-E4BBBDBFB086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE2BF72-EE95-4B44-B3D8-E4BBBDBFB086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE2BF72-EE95-4B44-B3D8-E4BBBDBFB086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE2BF72-EE95-4B44-B3D8-E4BBBDBFB086}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

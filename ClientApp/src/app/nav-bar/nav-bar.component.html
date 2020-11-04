@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" routerLinkActive="active" routerLink="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" routerLink="/events">Events<span class="sr-only">(current)</span></a>
+      </li>
+      <!--<li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
+      </li>-->
+      <li class="nav-item" *ngIf="loggedIn()">
+        <a class="nav-link" routerLinkActive="active" routerLink="add-event">Add Event</a>
+      </li>
+    </ul>
+
+    <div>
+      <ul class="nav navbar-nav">
+        <li *ngIf="!loggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/auth/register" routerLinkActive="active">Register</a>
+        </li>
+        <li *ngIf="!loggedIn()" class="nav-item">
+          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Login</a>
+        </li>
+        <!--<li *ngIf="loggedIn()" class="nav-item">
+          <a class="nav-link" (click)="onLogout()">Logout</a>
+        </li>-->
+        <div *ngIf="loggedIn()" class="dropdown mr-5" dropdown>
+          <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)=false>
+            Welcome {{ loggedinUser }}
+          </a>
+          <div class="dropdown-menu" *dropdownMenu>
+            <a (click)='onLogout()' class="dropdown-item">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
+            </a>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>

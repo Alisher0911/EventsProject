@@ -1,0 +1,52 @@
+﻿<Properties StartupConfiguration="{1B8899FB-C195-4EB8-BF80-4466AB7B6BBB}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Events.Core/Entities/User.cs">
+    <Files>
+      <File FileName="Events.API/Startup.cs" Line="41" Column="20" />
+      <File FileName="Events.API/appsettings.json" Line="8" Column="150" />
+      <File FileName="Events.API/Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="Events.API/Controllers/EventsController.cs" Line="52" Column="9" />
+      <File FileName="Events.API/Controllers/AuthController.cs" Line="48" Column="44" />
+      <File FileName="Events.Infrastructure/Repositories/AuthRepository.cs" />
+      <File FileName="Events.Core/DTOs/UserRegisterDTO.cs" />
+      <File FileName="Events.Core/Entities/User.cs" Line="1" Column="1" />
+      <File FileName="Events.API/Program.cs" />
+      <File FileName="Events.Infrastructure/Repositories/EventRepository.cs" />
+      <File FileName="Events.Core/DTOs/EventCreateDTO.cs" />
+      <File FileName="Events.Infrastructure/Context/DatabaseContext.cs" />
+      <File FileName="Events.Core/Interfaces/IEventRepository.cs" />
+      <File FileName="Events.Core/Entities/UserInEvent.cs" />
+      <File FileName="Events.Infrastructure/Repositories/UserInEventRepository.cs" />
+      <File FileName="Events.Core/Interfaces/IUserRepository.cs" />
+      <File FileName="Events.Core/Interfaces/IAuthRepository.cs" />
+      <File FileName="Events.API/Controllers/UsersController.cs" Line="1" Column="1" />
+      <File FileName="Events.Core/Entities/Event.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Events" expanded="True">
+            <Node name="Events.API" expanded="True">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+            <Node name="Events.Core" expanded="True">
+              <Node name="Entities" expanded="True">
+                <Node name="User.cs" selected="True" />
+              </Node>
+              <Node name="Profiles" expanded="True" />
+            </Node>
+            <Node name="Events.Infrastructure" expanded="True">
+              <Node name="Repositories" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Events.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

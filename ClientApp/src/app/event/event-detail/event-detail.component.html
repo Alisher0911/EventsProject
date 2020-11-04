@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-4 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img class="card-img-top" src="assets/images/meeting.png">
+      </div>
+
+      <div class="card-body">
+        <h1 class="card-title">{{ event.Name }}</h1>
+
+        <hr>
+
+        <div>
+          <strong>Place: {{ event.Place }}</strong>
+        </div>
+        <hr>
+        <div>
+          <strong>Start Date: {{ event.StartDate |date: 'medium'}}</strong>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-8">
+    <h1>Description</h1>
+    <p>{{ event.Description }}</p>
+  </div>
+</div>

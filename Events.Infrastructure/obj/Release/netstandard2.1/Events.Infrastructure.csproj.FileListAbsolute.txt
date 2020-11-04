@@ -1,0 +1,12 @@
+/Users/alisher/Projects/Events/Events.Infrastructure/bin/Release/netstandard2.1/Events.Infrastructure.deps.json
+/Users/alisher/Projects/Events/Events.Infrastructure/bin/Release/netstandard2.1/Events.Infrastructure.dll
+/Users/alisher/Projects/Events/Events.Infrastructure/bin/Release/netstandard2.1/Events.Infrastructure.pdb
+/Users/alisher/Projects/Events/Events.Infrastructure/bin/Release/netstandard2.1/Events.Core.dll
+/Users/alisher/Projects/Events/Events.Infrastructure/bin/Release/netstandard2.1/Events.Core.pdb
+/Users/alisher/Projects/Events/Events.Infrastructure/obj/Release/netstandard2.1/Events.Infrastructure.csprojAssemblyReference.cache
+/Users/alisher/Projects/Events/Events.Infrastructure/obj/Release/netstandard2.1/Events.Infrastructure.AssemblyInfoInputs.cache
+/Users/alisher/Projects/Events/Events.Infrastructure/obj/Release/netstandard2.1/Events.Infrastructure.AssemblyInfo.cs
+/Users/alisher/Projects/Events/Events.Infrastructure/obj/Release/netstandard2.1/Events.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/alisher/Projects/Events/Events.Infrastructure/obj/Release/netstandard2.1/Events.Infrastructure.csproj.CopyComplete
+/Users/alisher/Projects/Events/Events.Infrastructure/obj/Release/netstandard2.1/Events.Infrastructure.dll
+/Users/alisher/Projects/Events/Events.Infrastructure/obj/Release/netstandard2.1/Events.Infrastructure.pdb

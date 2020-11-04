@@ -1,0 +1,9 @@
+<label>Filter Name:  </label>
+<input [(ngModel)]='Name'>
+<button type="button" (click)="filterByName()">Search</button>
+<button type="button" (click)="filterByNameClear()">Clear</button>
+<div class="row">
+  <div *ngFor="let event of events|filter: SearchName:'Name' |sort: ['StartDate']" class="shadow-lg col-sm-4 p-3">
+    <app-event [event]="event"></app-event>
+  </div>
+</div>
