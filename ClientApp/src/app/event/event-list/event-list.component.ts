@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventClass } from 'src/app/model/eventClass';
+import { Event } from 'src/app/model/event';
 import { EventsService } from 'src/app/services/events.service';
-import { IEvent } from '../IEvent.interface';
 
 @Component({
   selector: 'app-event-list',
@@ -9,9 +8,7 @@ import { IEvent } from '../IEvent.interface';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-
-  //events: Array<IEvent>;
-  events: EventClass[];
+  events: Event[];
   Name = '';
   SearchName = '';
 
@@ -21,7 +18,7 @@ export class EventListComponent implements OnInit {
     this.eventsService.getAllEvents().subscribe(
       data => {
         this.events = data;
-        console.log(data);
+        console.log(this.events);
       }, error => {
         console.log(error);
       }

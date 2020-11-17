@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { EventsService } from 'src/app/services/events.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { IEvent } from '../IEvent.interface';
-import { EventClass } from 'src/app/model/eventClass';
+import { Event } from 'src/app/model/event';
 
 @Component({
   selector: 'app-add-event',
@@ -12,46 +11,70 @@ import { EventClass } from 'src/app/model/eventClass';
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
-  event = new EventClass();
+  event: Event;
   addEventForm: FormGroup;
   eventList: any[];
 
   constructor(private router: Router,
               private fb: FormBuilder,
-              private eventsService: EventsService,
+              public eventsService: EventsService,
               private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.resetForm();
     this.CreateAddEventForm();
-    this.eventsService.getAllEvents().subscribe(data => {
+    /*this.eventsService.getAllEvents().subscribe(data => {
       this.eventList = data;
       console.log(data);
-    })
+    })*/
+  }
+
+  resetForm(form?: NgForm) {
+    if(form != null) {
+      form.form.reset();
+    }
+    this.eventsService.formData = {
+      id: 0,
+      eventName: '',
+      description: '',
+      place: '',
+      startDate: '',
+      image: '',
+    }
   }
 
   onBack() {
     this.router.navigate(['/']);
   }
 
-  onSubmit() {
-    if(this.addEventForm.valid) {
-      this.mapEvent();
-      this.eventsService.addEvent(this.event);
+  onSubmit(form: NgForm) {
+    this.eventsService.addEvent(form.value).subscribe(
+      res => {
+        this.resetForm(form);
+        this.alertify.success("Successfully added!");
+        this.router.navigate(['/']);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+    /*if(this.addEventForm.valid) {
+      this.eventsService.addEvent(form.value);
       this.alertify.success('Form Submitted');
       console.log(this.addEventForm);
 
       this.router.navigate(['/']);
     } else {
       this.alertify.error("Not all fields are filled.");
-    }
+    }*/
   }
 
   mapEvent(): void {
-    this.event.Id = this.eventsService.newEventId();
-    this.event.Name = this.name.value;
-    this.event.Description = this.description.value;
-    this.event.Place = this.place.value;
-    this.event.StartDate = this.startDate.value;
+    this.event.id = this.eventsService.newEventId();
+    this.event.eventName = this.name.value;
+    this.event.description = this.description.value;
+    this.event.place = this.place.value;
+    this.event.startDate = this.startDate.value;
   }
 
 

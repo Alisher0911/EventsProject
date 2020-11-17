@@ -11,6 +11,7 @@ namespace Events.Core.Profiles
         {
             CreateMap<Event, EventDTO>();
             CreateMap<EventCreateDTO, Event>();
+            CreateMap<UserInEventDTO, UserInEvent>();
         }
     }
 }

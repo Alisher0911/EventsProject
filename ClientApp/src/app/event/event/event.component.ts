@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { IEvent } from '../IEvent.interface';
+import { Component, Input, OnInit } from '@angular/core';
+import { Event } from 'src/app/model/event';
 
 @Component({
   selector: 'app-event',
@@ -7,6 +7,15 @@ import { IEvent } from '../IEvent.interface';
   styleUrls: ['event.component.css']
 })
 
-export class EventsComponent {
-  @Input() event: IEvent
+
+export class EventsComponent implements OnInit{
+
+  @Input() event: Event;
+  constructor() {
+
+  }
+
+  ngOnInit():void{
+    console.log(this.event.eventName);
+  }
 }

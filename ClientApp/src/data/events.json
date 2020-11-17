@@ -1,7 +1,7 @@
 [
   {
     "Id":1,
-    "Name":"Programming",
+    "EventName":"Programming",
     "Description":"Event",
     "Place":"Coworking",
     "Start_date": "2020-12-20",
@@ -9,7 +9,7 @@
   },
   {
     "Id":2,
-    "Name":"Challenge",
+    "EventName":"Challenge",
     "Description":"Event",
     "Place":"Coworking",
     "Start_date": "2020-11-30",
@@ -17,7 +17,7 @@
   },
   {
     "Id":3,
-    "Name":"Hackathon",
+    "EventName":"Hackathon",
     "Description":"Event",
     "Place":"C3-336",
     "Start_date": "2020-10-31",
@@ -25,7 +25,7 @@
   },
   {
     "Id":4,
-    "Name":"New Hachathon",
+    "EventName":"New Hachathon",
     "Description":"Event",
     "Place":"C3-336",
     "Start_date": "2020-11-21",
@@ -33,7 +33,7 @@
   },
   {
     "Id":5,
-    "Name":"Meeting",
+    "EventName":"Meeting",
     "Description":"Event",
     "Place":"Assembly Hall",
     "Start_date": "2020-12-13",
@@ -41,7 +41,7 @@
   },
   {
     "Id":6,
-    "Name":"Meeting",
+    "EventName":"Meeting",
     "Description":"Event",
     "Place":"Assembly Hall",
     "Start_date": "2021-01-25",

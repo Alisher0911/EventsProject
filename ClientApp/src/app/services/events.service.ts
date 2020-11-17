@@ -1,58 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { IEvent } from '../event/IEvent.interface';
 import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
-import { EventClass } from '../model/eventClass';
+import { Event } from '../model/event';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
+  readonly rootURL = "https://localhost:5001/api";
+  list: Event[];
+  formData: Event;
 
   constructor(private http: HttpClient) { }
 
   getEvent(id: number) {
+    //return this.http.get<Event>(this.rootURL + '/events/' + id);
     return this.getAllEvents().pipe(
       map(eventsArray => {
-        //throw new Error('Some Error');
-        return eventsArray.find(e => e.Id === id);
+        return eventsArray.find(e => e.id === id);
       })
     );
   }
 
-  getAllEvents(): Observable<EventClass[]> {
-    return this.http.get('data/events.json').pipe(
-      map(data => {
-        const eventsArray: Array<EventClass> = [];
-        const localEvents = JSON.parse(localStorage.getItem('newEvent'));
-        if(localEvents) {
-          for (const id in localEvents) {
-            if(localEvents.hasOwnProperty(id)) {
-              eventsArray.push(localEvents[id]);
-            }
-          }
-        }
-
-        for (const id in data) {
-          if(data.hasOwnProperty(id)) {
-            eventsArray.push(data[id]);
-          }
-        }
-        return eventsArray;
-      })
-    );
-
-    return this.http.get<EventClass[]>('data/events.json');
+  getAllEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.rootURL + '/events');
   }
 
-  addEvent(event: EventClass) {
-    let newEvent = [event];
-    if(localStorage.getItem('newEvent')) {
-      newEvent = [event, ...JSON.parse(localStorage.getItem('newEvent'))];
-    }
-    localStorage.setItem('newEvent', JSON.stringify(newEvent));
+  getEventsByUser(userId: number): Observable<Event[]> {
+    return this.http.get<Event[]>(this.rootURL + '/users/' +userId + '/participatedEvents');
+  }
+
+  addEvent(formData: Event) {
+    return this.http.post(this.rootURL + '/events/addEvent', formData);
   }
 
   newEventId() {

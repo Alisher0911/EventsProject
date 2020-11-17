@@ -32,6 +32,12 @@ namespace Events.Infrastructure.Migrations
                     b.Property<string>("EventName")
                         .HasColumnType("text");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Place")
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("timestamp without time zone");
 

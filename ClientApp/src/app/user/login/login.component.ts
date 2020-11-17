@@ -17,15 +17,25 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginForm: NgForm) {
-    console.log(loginForm.value);
+    return this.authService.login(loginForm.value).subscribe(
+      res => {
+        this.alertify.success("Logged In!");
+        this.router.navigate(['/']);
+      }, err => {
+        console.log(err);
+        this.alertify.warning("Incorrect Email or Password!");
+      }
+    );
+    /*console.log(loginForm.value);
     const token = this.authService.authUser(loginForm.value);
     if(token) {
-      localStorage.setItem('token', token.email);
+      console.log(token);
+      localStorage.setItem('token', JSON.stringify(token));
       this.alertify.success('Succesfully Logged In.');
       this.router.navigate(['/']);
     } else {
       this.alertify.error('Incorrect email or password');
-    }
+    }*/
   }
 
 }

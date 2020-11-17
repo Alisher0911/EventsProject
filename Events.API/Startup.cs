@@ -16,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Events.API
@@ -31,6 +30,7 @@ namespace Events.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -39,7 +39,9 @@ namespace Events.API
                 {
                     options.JsonSerializerOptions.WriteIndented = true;
                 });
+
             services.AddCors();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<DatabaseContext>(
                 options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
@@ -77,7 +79,11 @@ namespace Events.API
 
             app.UseRouting();
 
-            app.UseCors(m => m.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowAnyOrigin());
 
             app.UseAuthentication();
 

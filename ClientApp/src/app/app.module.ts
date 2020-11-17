@@ -16,12 +16,18 @@ import { AddEventComponent } from './event/add-event/add-event.component';
 import { EventDetailComponent } from './event/event-detail/event-detail.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
-import { UserServiceService } from './services/user-service.service';
+import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
 import { EventDetailResolverService } from './event/event-detail/event-detail-resolver.service';
 import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
+import { UserEventsComponent } from './user/user-events/user-events.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+
+const eventRoutes: Routes = [
+  { path: 'participatedEvents', component: UserEventsComponent}
+];
 
 const appRoutes: Routes = [
   { path: '', component: EventListComponent },
@@ -30,8 +36,10 @@ const appRoutes: Routes = [
   { path: 'users', component: EventListComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'add-event', component: AddEventComponent },
-  { path: '**', component: EventListComponent }
+  { path: 'addEvent', component: AddEventComponent },
+  //{ path: '**', component: EventListComponent },
+  { path: 'users', component: UserProfileComponent },
+  { path: 'users/:id', component: UserProfileComponent, children: eventRoutes}
 ]
 
 @NgModule({
@@ -44,6 +52,8 @@ const appRoutes: Routes = [
     EventDetailComponent,
     RegisterComponent,
     LoginComponent,
+    UserProfileComponent,
+    UserEventsComponent,
     FilterPipe,
     SortPipe
    ],
@@ -59,7 +69,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     EventsService,
-    UserServiceService,
+    UserService,
     AlertifyService,
     AuthService,
     EventDetailResolverService

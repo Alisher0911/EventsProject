@@ -3,26 +3,26 @@
       Add New Event
   </div>
   <div class="card-body">
-      <form [formGroup]="addEventForm" (ngSubmit)='onSubmit()'>
+      <form #addForm="ngForm" (submit)='onSubmit(addForm)'>
         <div class="form-group col-12">
             <label for="name">Name</label>
-            <input type="text" class="form-control" formControlName="Name" required minlength="5">
+            <input type="text" class="form-control" name="eventName" #eventName="ngModel" [(ngModel)]="eventsService.formData.eventName" required minlength="5">
 
         </div>
 
         <div class="form-group col-12">
           <label for="description">Desctiption</label>
-          <textarea class="form-control" rows="3" id="inputlg" formControlName="Description" required maxlength="500"></textarea>
+          <textarea class="form-control" rows="3" id="inputlg" name="description" #description="ngModel" [(ngModel)]="eventsService.formData.description" required maxlength="500"></textarea>
         </div>
 
         <div class="form-group col-12">
           <label for="place">Place</label>
-          <input type="text" class="form-control" formControlName="Place" required maxlength="200">
+          <input type="text" class="form-control" name="place" #place="ngModel" [(ngModel)]="eventsService.formData.place" required maxlength="200">
         </div>
 
         <div class="form-group col-12">
           <label for="sdate">Start Date</label>
-          <input type="text" placeholder="Choose Date" class="form-control" formControlName="StartDate" bsDatepicker [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }">
+          <input type="text" placeholder="Choose Date" class="form-control" name="startDate" #startDate="ngModel" [(ngModel)]="eventsService.formData.startDate" bsDatepicker [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }">
         </div>
 
         <div class="form-group col-12">

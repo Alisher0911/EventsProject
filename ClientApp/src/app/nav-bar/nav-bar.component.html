@@ -12,8 +12,8 @@
       <!--<li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
       </li>-->
-      <li class="nav-item" *ngIf="loggedIn()">
-        <a class="nav-link" routerLinkActive="active" routerLink="add-event">Add Event</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="addEvent">Add Event</a>
       </li>
     </ul>
 
@@ -25,14 +25,21 @@
         <li *ngIf="!loggedIn()" class="nav-item">
           <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Login</a>
         </li>
-        <!--<li *ngIf="loggedIn()" class="nav-item">
-          <a class="nav-link" (click)="onLogout()">Logout</a>
-        </li>-->
         <div *ngIf="loggedIn()" class="dropdown mr-5" dropdown>
           <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)=false>
-            Welcome {{ loggedinUser }}
+            Welcome {{ FullName }}
           </a>
           <div class="dropdown-menu" *dropdownMenu>
+            <a class="dropdown-item" routerLink="/users/{{Id}}" routerLinkActive="active">
+              <i class="far fa-id-badge"></i>
+              My Frofile
+            </a>
+
+            <a class="dropdown-item" routerLink="/users/{{Id}}/participatedEvents" routerLinkActive="active">
+              <i class="far fa-calendar-alt"></i>
+              My Events
+            </a>
+
             <a (click)='onLogout()' class="dropdown-item">
               <i class="fas fa-sign-out-alt"></i>
               Logout

@@ -19,24 +19,30 @@ namespace Events.API.Controllers
     {
         private readonly IEventRepository _events;
         private readonly IMapper _mapper;
+        private readonly IUserInEventRepository _userInEvent;
+        private readonly IUserRepository _users;
 
-        public EventsController(IEventRepository events, IMapper mapper)
+        public EventsController(IEventRepository events, IMapper mapper, IUserInEventRepository userInEvent, IUserRepository users)
         {
             _events = events;
             _mapper = mapper;
+            _userInEvent = userInEvent;
+            _users = users;
         }
 
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EventDTO>>> GetEvents()
+        public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
         {
             var Events = await _events.GetEvents();
-            return Ok(_mapper.Map<IEnumerable<EventDTO>>(Events));
+            return Ok(Events);
+            //return Ok(_mapper.Map<IEnumerable<EventDTO>>(Events));
         }
 
 
-        [Authorize(Roles = "Student,Organizer")]
+        [AllowAnonymous]
+        //[Authorize(Roles = "Student,Organizer")]
         [HttpGet("{eventId}")]
         public async Task<ActionResult<EventDTO>> getEventById(int eventId)
         {
@@ -50,20 +56,8 @@ namespace Events.API.Controllers
 
 
         //[Authorize(Roles = "Student,Organizer")]
-        [HttpGet("users/{userId}/participatedEvents")]
-        public async Task<ActionResult<IEnumerable<EventDTO>>> GetEventsByUser(int userId)
-        {
-            var events = await _events.GetEventsByUser(userId);
-            if (events != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<EventDTO>>(events));
-            }
-            return NotFound();
-        }
-
-
-        //[Authorize(Roles = "Student,Organizer")]
-        [HttpPost("add-event")]
+        [AllowAnonymous]
+        [HttpPost("addEvent")]
         public async Task<ActionResult<EventDTO>> CreateEvent(EventCreateDTO eventCreateDTO)
         {
             var Event = _mapper.Map<Event>(eventCreateDTO);
@@ -73,7 +67,7 @@ namespace Events.API.Controllers
         }
 
 
-        //[Authorize(Roles = Role.Organizer)]
+        [Authorize(Roles = Role.Organizer)]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteEvent(int eventId)
         {
@@ -84,6 +78,14 @@ namespace Events.API.Controllers
             }
             await _events.DeleteEvent(evt);
             return NoContent();
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost("{eventId}/join/{userId}")]
+        public async Task<IActionResult> AddUserToEvent(UserInEventDTO newUserInEvent)
+        {
+            return Ok(await _userInEvent.AddUserToEvent(newUserInEvent));
         }
     }
 }

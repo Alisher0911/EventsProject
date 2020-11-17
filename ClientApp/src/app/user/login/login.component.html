@@ -5,7 +5,7 @@
       Login
     </div>
     <div class="card-body">
-      <form #loginForm='ngForm' (ngSubmit)="onLogin(loginForm)">
+      <form #loginForm='ngForm' (submit)="onLogin(loginForm)">
         <div class="form-group col-12">
           <label for="email" class="form-label">Email</label>
           <input type="text" class="form-control" required ngModel name="email">

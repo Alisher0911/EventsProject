@@ -6,23 +6,26 @@
       </div>
 
       <div class="card-body">
-        <h1 class="card-title">{{ event.Name }}</h1>
+        <h1 class="card-title">{{ event.eventName}}</h1>
 
         <hr>
 
         <div>
-          <strong>Place: {{ event.Place }}</strong>
+          <strong>Place: {{ event.place }}</strong>
         </div>
         <hr>
         <div>
-          <strong>Start Date: {{ event.StartDate |date: 'medium'}}</strong>
+          <strong>Start Date: {{ event.startDate |date: 'medium'}}</strong>
         </div>
       </div>
 
       <div class="card-footer">
         <div class="btn-group d-flex">
-          <button class="btn btn-primary">Like</button>
-          <button class="btn btn-success">Join</button>
+          <form #form="ngForm" (submit)="joinToEvent(event.id, authService.currentUser.id)">
+            <!--<input type="hidden" value="{{ event.id }}" name="eventId" #eventId="ngModel" [(ngModel)]="userSevice.form.eventId">
+            <input type="hidden" value="{{ authService.currentUser.Id }}" name="userId" #userId="ngModel" [(ngModel)]="userSevice.form.userId">-->
+            <button type="submit" class="btn btn-success">Join</button>
+          </form>
         </div>
       </div>
     </div>
@@ -30,6 +33,6 @@
 
   <div class="col-sm-8">
     <h1>Description</h1>
-    <p>{{ event.Description }}</p>
+    <p>{{ event.description }}</p>
   </div>
 </div>

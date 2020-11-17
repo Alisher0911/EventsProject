@@ -1,16 +1,16 @@
 <div class="card">
   <div class="card-img-wrapper">
-    <img *ngIf="event.Image" class="card-img-top" src="assets/images/{{ event.Image }}.png">
-    <img *ngIf="!event.Image" class="card-img-top" src="assets/images/default.png">
+    <img *ngIf="event.image" class="card-img-top" src="assets/images/{{ event.image }}.png">
+    <img *ngIf="!event.image" class="card-img-top" src="assets/images/default.png">
     <ul class="list-inline text-center member-icons animate">
       <li class="list-inline-item">
-        <button class="btn btn-danger" routerLink="/events/{{ event.Id }}"><i class="far fa-edit"></i></button>
+        <button class="btn btn-danger" routerLink="/events/{{ event.id }}"><i class="far fa-edit"></i></button>
       </li>
     </ul>
   </div>
   <div class="card-body p-1">
-    <h1 class=mb-0>{{event.Name}}</h1>
-    Place: {{ event.Place }}
-    <h6 class="mb-0">Start Date: {{event.StartDate |date: 'medium'}}</h6>
+    <h1 class="mb-0">{{event.eventName}}</h1>
+    Place: {{ event.place}}
+    <h6 class="mb-0">Start Date: {{event.startDate |date: 'medium'}}</h6>
   </div>
 </div>

@@ -1,34 +1,42 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using AutoMapper;
+using Events.Core.DTOs;
 using Events.Core.Entities;
 using Events.Core.Interfaces;
 using Events.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Events.Infrastructure.Repositories
 {
     public class UserInEventRepository : IUserInEventRepository
     {
         private readonly DatabaseContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public UserInEventRepository(DatabaseContext dbContext)
+        public UserInEventRepository(DatabaseContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
 
-        public async Task AddUserToEvent(User user, Event evt)
+        public async Task<UserInEventDTO> AddUserToEvent(UserInEventDTO userInEvent)
         {
-            if (user == null || evt == null)
+            User user = await _dbContext.Users
+                .Include(u => u.UserInEvents).ThenInclude(ue => ue.Event)
+                .FirstOrDefaultAsync(u => u.Id == userInEvent.UserId);
+
+            Event evt = await _dbContext.Events
+                .FirstOrDefaultAsync(e => e.Id == userInEvent.EventId);
+
+            UserInEvent newUserInEvent = new UserInEvent
             {
-                throw new ArgumentNullException(nameof(user));
-            }
-            UserInEvent userInEvent = new UserInEvent
-            {
-                EventId = evt.Id,
-                UserId = user.Id
+                Event = evt,
+                User = user
             };
-            _dbContext.UserInEvents.Add(userInEvent);
+            await _dbContext.UserInEvents.AddAsync(newUserInEvent);
             await _dbContext.SaveChangesAsync();
+            return userInEvent;
         }
     }
 }

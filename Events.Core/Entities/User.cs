@@ -11,9 +11,10 @@ namespace Events.Core.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string PhoneNumber { get; set; }
-
-        public List<UserInEvent> UserInEvents { get; set; }
-
         public string Role { get; set; }
+
+        public IList<UserInEvent> UserInEvents { get; set; }
+
+        
     }
 }

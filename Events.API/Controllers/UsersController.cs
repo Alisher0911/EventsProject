@@ -19,14 +19,12 @@ namespace Events.API.Controllers
     {
         private readonly IUserRepository _users;
         private readonly IEventRepository _events;
-        private readonly IUserInEventRepository _userInEvent;
         private readonly IMapper _mapper;
 
-        public UsersController(IUserRepository users, IEventRepository events, IUserInEventRepository userInEvent, IMapper mapper)
+        public UsersController(IUserRepository users, IEventRepository events, IMapper mapper)
         {
             _users = users;
             _events = events;
-            _userInEvent = userInEvent;
             _mapper = mapper;
         }
 
@@ -40,7 +38,8 @@ namespace Events.API.Controllers
         }
 
 
-        [Authorize(Roles = "Student,Organizer")]
+        //[Authorize(Roles = "Student,Organizer")]
+        [AllowAnonymous]
         [HttpGet("{userId}")]
         public async Task<ActionResult<UserDTO>> GetUserById(int userId)
         {
@@ -48,6 +47,20 @@ namespace Events.API.Controllers
             if (user != null)
             {
                 return Ok(_mapper.Map<UserDTO>(user));
+            }
+            return NotFound();
+        }
+
+
+        //[Authorize(Roles = "Student,Organizer")]
+        [AllowAnonymous]
+        [HttpGet("{userId}/participatedEvents")]
+        public async Task<ActionResult<IEnumerable<EventDTO>>> GetEventsByUser(int userId)
+        {
+            var events = await _events.GetEventsByUser(userId);
+            if (events != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<EventDTO>>(events));
             }
             return NotFound();
         }
@@ -76,21 +89,6 @@ namespace Events.API.Controllers
                 return NotFound();
             }
             await _users.DeleteUser(user);
-            return NoContent();
-        }
-
-
-        [Authorize(Roles = Role.Student)]
-        [HttpPost("{userId}/addUserToEvent/{eventId}")]
-        public async Task<ActionResult> AddUserToEvent(int userId, int eventId)
-        {
-            var user = await _users.GetUserById(userId);
-            var evt = await _events.GetEventById(eventId);
-            if (user == null || evt == null)
-            {
-                return NotFound();
-            }
-            await _userInEvent.AddUserToEvent(user, evt);
             return NoContent();
         }
     }
