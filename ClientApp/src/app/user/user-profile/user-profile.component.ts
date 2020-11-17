@@ -22,7 +22,7 @@ export class UserProfileComponent implements OnInit {
               private router: Router,
               private userService: UserService,
               private authService: AuthService) {
-                this.userId = route.snapshot.params['id'];
+                this.userId = route.snapshot.params['userid'];
                }
 
 

@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { EventsComponent } from './event/event/event.component';
@@ -24,6 +25,12 @@ import { FilterPipe } from './Pipes/filter.pipe';
 import { SortPipe } from './Pipes/sort.pipe';
 import { UserEventsComponent } from './user/user-events/user-events.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { EventUsersComponent } from './event/event-users/event-users.component';
+import { AuthGuardService } from './guards/auth-guard.service';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 const eventRoutes: Routes = [
   { path: 'participatedEvents', component: UserEventsComponent}
@@ -33,13 +40,14 @@ const appRoutes: Routes = [
   { path: '', component: EventListComponent },
   { path: 'events', component: EventListComponent },
   { path: 'events/:id', component: EventDetailComponent, resolve: {prp: EventDetailResolverService} },
+  { path: 'events/:eventid/userInEvent', component: EventUsersComponent },
   { path: 'users', component: EventListComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'addEvent', component: AddEventComponent },
+  { path: 'addEvent', component: AddEventComponent, canActivate: [AuthGuardService] },
   //{ path: '**', component: EventListComponent },
-  { path: 'users', component: UserProfileComponent },
-  { path: 'users/:id', component: UserProfileComponent, children: eventRoutes}
+  { path: 'users/:userid', component: UserProfileComponent },
+  { path: 'users/:useriid/participatedEvents', component: UserEventsComponent }
 ]
 
 @NgModule({
@@ -54,6 +62,7 @@ const appRoutes: Routes = [
     LoginComponent,
     UserProfileComponent,
     UserEventsComponent,
+    EventUsersComponent,
     FilterPipe,
     SortPipe
    ],
@@ -65,7 +74,14 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5001"],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [
     EventsService,

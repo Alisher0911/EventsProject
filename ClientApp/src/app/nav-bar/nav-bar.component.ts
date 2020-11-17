@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from '../services/alertify.service';
 import { AuthService } from '../services/auth.service';
 
@@ -11,11 +11,20 @@ import { AuthService } from '../services/auth.service';
 export class NavBarComponent implements OnInit {
   loggedinUser: string;
 
-  constructor(private alertify: AlertifyService,
+  constructor(private route: ActivatedRoute,
+              private alertify: AlertifyService,
               private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
+  }
+
+  showUserProfile() {
+    this.router.navigate(['/users/' + this.authService.currentUser.id], {relativeTo: this.route});
+  }
+
+  showUserEvents() {
+    this.router.navigate(['/users/' + this.authService.currentUser.id + '/participatedEvents'], {relativeTo: this.route});
   }
 
   isOrganizer():boolean {

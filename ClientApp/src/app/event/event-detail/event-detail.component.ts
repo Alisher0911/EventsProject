@@ -40,12 +40,17 @@ export class EventDetailComponent implements OnInit {
     )
   }
 
+
   /*getEvent() {
     this.eventsService.getEvent(this.eventId).subscribe(data => {
       this.event = data;
       console.log(this.event);
     })
   }*/
+
+  showEventParticipants(id: number) {
+    this.router.navigate(['/events/' + id + '/userInEvent'], {relativeTo: this.route});
+  }
 
   joinToEvent(eventid: any, userid: any) {
     this.userinevent = {
@@ -59,7 +64,7 @@ export class EventDetailComponent implements OnInit {
         this.alertify.success("Succesfully Joined!");
       }, err => {
         console.log(err);
-        this.alertify.error("Error!");
+        this.alertify.error("You already joined");
       }
     );
   }

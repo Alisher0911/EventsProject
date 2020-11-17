@@ -22,14 +22,6 @@ export class AuthService {
 
 constructor(private http: HttpClient) { }
 
-authUser(user: any) {
-  //return this.http.post(this.rootURL + '/auth/login', user);
-  let UserArray = [];
-  if(localStorage.getItem('Users')) {
-    UserArray = JSON.parse(localStorage.getItem("Users"));
-  }
-  return UserArray.find(u => u.email === user.email && u.password === user.password);
-}
 
 login(user: any) {
   return this.http.post(this.rootURL + '/auth/login', user).pipe(
@@ -38,10 +30,10 @@ login(user: any) {
       if(user) {
         localStorage.setItem('token', user.token);
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        this.currentUser.id = this.decodedToken.nameid;
+        this.currentUser.id = this.decodedToken.id;
         this.currentUser.email = this.decodedToken.email;
-        this.currentUser.fullName = this.decodedToken.unique_name;
-        this.currentUser.phoneNumber = 'no_phone_number';
+        this.currentUser.fullName = this.decodedToken.fullName;
+        this.currentUser.phoneNumber = this.decodedToken.phoneNumber;
         this.currentUser.role = this.decodedToken.role;
       }
     })

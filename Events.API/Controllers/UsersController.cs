@@ -38,8 +38,7 @@ namespace Events.API.Controllers
         }
 
 
-        //[Authorize(Roles = "Student,Organizer")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Student,Organizer")]
         [HttpGet("{userId}")]
         public async Task<ActionResult<UserDTO>> GetUserById(int userId)
         {
@@ -52,8 +51,7 @@ namespace Events.API.Controllers
         }
 
 
-        //[Authorize(Roles = "Student,Organizer")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Student,Organizer")]
         [HttpGet("{userId}/participatedEvents")]
         public async Task<ActionResult<IEnumerable<EventDTO>>> GetEventsByUser(int userId)
         {
@@ -67,19 +65,6 @@ namespace Events.API.Controllers
 
 
         [Authorize(Roles = "Student,Organizer")]
-        [HttpGet("{eventId}/userInEvent")]
-        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsersByEvent(int eventId)
-        {
-            var users = await _users.GetUsersByEvent(eventId);
-            if (users != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<UserDTO>>(users));
-            }
-            return NotFound();
-        }
-
-
-        [Authorize(Roles = Role.Student)]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int userId)
         {

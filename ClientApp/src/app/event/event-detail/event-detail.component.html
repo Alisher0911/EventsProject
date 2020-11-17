@@ -26,6 +26,7 @@
             <input type="hidden" value="{{ authService.currentUser.Id }}" name="userId" #userId="ngModel" [(ngModel)]="userSevice.form.userId">-->
             <button type="submit" class="btn btn-success">Join</button>
           </form>
+          <button class="btn btn-danger" (click)="showEventParticipants(event.id)">Participants</button>
         </div>
       </div>
     </div>

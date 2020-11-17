@@ -65,28 +65,41 @@ namespace Events.API.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.FullName),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.HomePhone, user.PhoneNumber),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim("id", user.Id.ToString()),
+                new Claim("fullName", user.FullName),
+                new Claim("email", user.Email),
+                new Claim("phoneNumber", user.PhoneNumber),
+                new Claim("role", user.Role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
+                Issuer = "http://localhost:5001",
+                Audience = "http://localhost:5001",
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddHours(3),
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature)
             };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenOptions = new JwtSecurityToken(
+                issuer: "https://localhost:5001",
+                audience: "https://localhost:5001",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(5),
+                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature)
+            );
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            return Ok(new { Token = tokenString });
+
+            /*var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return Ok(new
             {
                 token = tokenHandler.WriteToken(token)
-            });
+            });*/
         }
     }
 }

@@ -3,6 +3,8 @@ import { User } from '../model/user';
 import { HttpClient } from '@angular/common/http';
 import { UserInEvent } from '../model/userinevent';
 import { UserProfile } from '../model/userprofile';
+import { UserDetail } from '../model/userdetail';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -25,5 +27,9 @@ joinToEvent(form: UserInEvent) {
 
 getUser(id: number) {
   return this.http.get<UserProfile>(this.rootURL + '/users/' + id);
+}
+
+getUsersEvent(eventId: number): Observable<UserProfile[]> {
+  return this.http.get<UserProfile[]>(this.rootURL + '/events/' + eventId + '/userInEvent');
 }
 }

@@ -42,7 +42,6 @@ namespace Events.API.Controllers
 
 
         [AllowAnonymous]
-        //[Authorize(Roles = "Student,Organizer")]
         [HttpGet("{eventId}")]
         public async Task<ActionResult<EventDTO>> getEventById(int eventId)
         {
@@ -55,8 +54,22 @@ namespace Events.API.Controllers
         }
 
 
-        //[Authorize(Roles = "Student,Organizer")]
+
         [AllowAnonymous]
+        [HttpGet("{eventId}/userInEvent")]
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsersByEvent(int eventId)
+        {
+            var users = await _users.GetUsersByEvent(eventId);
+            if (users != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<UserDTO>>(users));
+            }
+            return NotFound();
+        }
+
+
+
+        [Authorize(Roles = "Organizer")]
         [HttpPost("addEvent")]
         public async Task<ActionResult<EventDTO>> CreateEvent(EventCreateDTO eventCreateDTO)
         {
@@ -67,21 +80,27 @@ namespace Events.API.Controllers
         }
 
 
-        [Authorize(Roles = Role.Organizer)]
-        [HttpDelete("{id}")]
+        [Authorize(Roles = "Organizer")]
+        [HttpPost("delete")]
         public async Task<ActionResult> DeleteEvent(int eventId)
         {
-            var evt = await _events.GetEventById(eventId);
+            var evt = await _events.DeleteEvent(eventId);
+            if(evt)
+            {
+                return Ok("Successfully deleted!");
+            }
+            return BadRequest("Error happened.");
+            /*var evt = await _events.GetEventById(eventId);
             if (evt == null)
             {
                 return NotFound();
             }
             await _events.DeleteEvent(evt);
-            return NoContent();
+            return NoContent();*/
         }
 
 
-        [AllowAnonymous]
+        [Authorize(Roles = "Student,Organizer")]
         [HttpPost("{eventId}/join/{userId}")]
         public async Task<IActionResult> AddUserToEvent(UserInEventDTO newUserInEvent)
         {

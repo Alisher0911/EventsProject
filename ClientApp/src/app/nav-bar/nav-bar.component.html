@@ -12,7 +12,7 @@
       <!--<li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
       </li>-->
-      <li class="nav-item">
+      <li *ngIf="isOrganizer()" class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="addEvent">Add Event</a>
       </li>
     </ul>
@@ -30,12 +30,12 @@
             Welcome {{ FullName }}
           </a>
           <div class="dropdown-menu" *dropdownMenu>
-            <a class="dropdown-item" routerLink="/users/{{Id}}" routerLinkActive="active">
+            <a class="dropdown-item"  (click)="showUserProfile()">
               <i class="far fa-id-badge"></i>
               My Frofile
             </a>
 
-            <a class="dropdown-item" routerLink="/users/{{Id}}/participatedEvents" routerLinkActive="active">
+            <a class="dropdown-item"  (click)="showUserEvents()">
               <i class="far fa-calendar-alt"></i>
               My Events
             </a>

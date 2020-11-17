@@ -10,8 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  invalidLogin: boolean;
 
-  constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router) { }
+  constructor(private authService: AuthService,
+              private alertify: AlertifyService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,16 +29,6 @@ export class LoginComponent implements OnInit {
         this.alertify.warning("Incorrect Email or Password!");
       }
     );
-    /*console.log(loginForm.value);
-    const token = this.authService.authUser(loginForm.value);
-    if(token) {
-      console.log(token);
-      localStorage.setItem('token', JSON.stringify(token));
-      this.alertify.success('Succesfully Logged In.');
-      this.router.navigate(['/']);
-    } else {
-      this.alertify.error('Incorrect email or password');
-    }*/
   }
 
 }

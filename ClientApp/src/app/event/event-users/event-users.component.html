@@ -1,0 +1,17 @@
+<h1 class="text-center">Participants</h1>
+<table class="table table-striped custab" style="margin-top: 30px;">
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>Place</th>
+          <th>Role</th>
+      </tr>
+  </thead>
+          <tr *ngFor="let user of users_of_event">
+              <td>{{ user.fullName }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phoneNumber }}</td>
+              <td>{{ user.role }}</td>
+          </tr>
+  </table>
