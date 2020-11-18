@@ -2,7 +2,8 @@
   <div class="col-sm-4 p-0">
     <div class="card">
       <div class="card-img-wrapper">
-        <img class="card-img-top" src="assets/images/meeting.png">
+        <img *ngIf="event.image" class="card-img-top" src="assets/images/{{ event.image }}.png">
+        <img *ngIf="!event.image" class="card-img-top" src="assets/images/default.png">
       </div>
 
       <div class="card-body">
@@ -24,7 +25,7 @@
           <form #form="ngForm" (submit)="joinToEvent(event.id, authService.currentUser.id)">
             <!--<input type="hidden" value="{{ event.id }}" name="eventId" #eventId="ngModel" [(ngModel)]="userSevice.form.eventId">
             <input type="hidden" value="{{ authService.currentUser.Id }}" name="userId" #userId="ngModel" [(ngModel)]="userSevice.form.userId">-->
-            <button type="submit" class="btn btn-success">Join</button>
+            <button *ngIf="loggedIn()" type="submit" class="btn btn-success">Join</button>
           </form>
           <button class="btn btn-danger" (click)="showEventParticipants(event.id)">Participants</button>
         </div>

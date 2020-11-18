@@ -32,4 +32,8 @@ getUser(id: number) {
 getUsersEvent(eventId: number): Observable<UserProfile[]> {
   return this.http.get<UserProfile[]>(this.rootURL + '/events/' + eventId + '/userInEvent');
 }
+
+getAllUsers(): Observable<UserDetail[]> {
+  return this.http.get<UserDetail[]>(this.rootURL + '/users');
+}
 }

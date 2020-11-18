@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angula
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,17 +11,20 @@ import { AlertifyService } from 'src/app/services/alertify.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  //registrationForm: FormGroup;
+  registrationForm: FormGroup;
   //user: User;
-  //userSubmitted: boolean;
 
-  constructor(/*private fb: FormBuilder,*/ public userService: UserService, private alertify: AlertifyService) { }
+  constructor(private fb: FormBuilder,
+              public userService: UserService,
+              private alertify: AlertifyService,
+              private router: Router) { }
 
   ngOnInit() {
     this.resetForm();
+    this.createRegistrationForm();
   }
 
-  /*createRegistrationForm() {
+  createRegistrationForm() {
     this.registrationForm = this.fb.group({
       fullName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
@@ -33,7 +37,7 @@ export class RegisterComponent implements OnInit {
   confirmPasswordValidator(fg: FormGroup): Validators {
     return fg.get('password').value == fg.get('confirmPassword').value ? null :
     {notMatched: true}
-  }*/
+  }
 
   resetForm(form?: NgForm) {
     if(form != null) {
@@ -44,7 +48,7 @@ export class RegisterComponent implements OnInit {
       Email: '',
       Password: '',
       PhoneNumber: '',
-      Role: ''
+      Role: '',
     }
   }
 
@@ -53,6 +57,7 @@ export class RegisterComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.alertify.success("Successfully registered!");
+        this.router.navigate(['/']);
       },
       err => {
         console.log(err);

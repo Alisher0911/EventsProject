@@ -54,18 +54,14 @@ namespace Events.Infrastructure.Repositories
         }
 
 
-        public async Task<bool> DeleteEvent(int eventId)
+        public async Task DeleteEvent(int eventId)
         {
-            var eventToDelete = await _dbContext.Events.FirstOrDefaultAsync(x => x.Id == eventId);
-            if (eventToDelete != null)
+            var result = await _dbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+            if (result != null)
             {
-                _dbContext.Events.Remove(eventToDelete);
+                _dbContext.Events.Remove(result);
                 await _dbContext.SaveChangesAsync();
-                return true;
             }
-            return false;
-            /*_dbContext.Events.Remove(evt);
-            await _dbContext.SaveChangesAsync();*/
         }
 
     }

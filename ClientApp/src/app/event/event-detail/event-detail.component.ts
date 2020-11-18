@@ -25,14 +25,12 @@ export class EventDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private eventsService: EventsService,
               public authService: AuthService,
               public userSevice: UserService,
               private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.eventId = Number(this.route.snapshot.params['id']);
-    //this.getEvent();
     this.route.data.subscribe(
       (data: Event) => {
         this.event = data['prp'];
@@ -40,13 +38,9 @@ export class EventDetailComponent implements OnInit {
     )
   }
 
-
-  /*getEvent() {
-    this.eventsService.getEvent(this.eventId).subscribe(data => {
-      this.event = data;
-      console.log(this.event);
-    })
-  }*/
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
 
   showEventParticipants(id: number) {
     this.router.navigate(['/events/' + id + '/userInEvent'], {relativeTo: this.route});

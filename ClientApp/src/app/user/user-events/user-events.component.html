@@ -5,15 +5,11 @@
           <th>Name</th>
           <th>Start Date</th>
           <th>Place</th>
-          <th class="text-center">Action</th>
       </tr>
   </thead>
           <tr *ngFor="let event of events_of_user">
               <td>{{ event.eventName }}</td>
               <td>{{ event.startDate }}</td>
               <td>{{ event.place }}</td>
-              <td class="text-center">
-                <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a>
-              </td>
           </tr>
   </table>

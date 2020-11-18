@@ -81,15 +81,17 @@ namespace Events.API.Controllers
 
 
         [Authorize(Roles = "Organizer")]
-        [HttpPost("delete")]
+        [HttpPost("{delete}")]
         public async Task<ActionResult> DeleteEvent(int eventId)
         {
-            var evt = await _events.DeleteEvent(eventId);
-            if(evt)
+            await _events.DeleteEvent(eventId);
+            return NoContent();
+            //_events.DeleteEvent(eventId);
+            /*if(evt)
             {
                 return Ok("Successfully deleted!");
             }
-            return BadRequest("Error happened.");
+            return BadRequest("Error happened.");*/
             /*var evt = await _events.GetEventById(eventId);
             if (evt == null)
             {

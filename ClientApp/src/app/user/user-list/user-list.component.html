@@ -1,0 +1,17 @@
+<h1 class="text-center">All Users</h1>
+<table class="table table-striped custab" style="margin-top: 30px;">
+  <thead>
+      <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Role</th>
+      </tr>
+  </thead>
+          <tr *ngFor="let user of users">
+              <td>{{ user.fullName }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phoneNumber }}</td>
+              <td>{{ user.role }}</td>
+          </tr>
+  </table>

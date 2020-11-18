@@ -27,6 +27,7 @@ import { UserEventsComponent } from './user/user-events/user-events.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { EventUsersComponent } from './event/event-users/event-users.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -41,13 +42,13 @@ const appRoutes: Routes = [
   { path: 'events', component: EventListComponent },
   { path: 'events/:id', component: EventDetailComponent, resolve: {prp: EventDetailResolverService} },
   { path: 'events/:eventid/userInEvent', component: EventUsersComponent },
-  { path: 'users', component: EventListComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: 'auth/login', component: LoginComponent },
   { path: 'addEvent', component: AddEventComponent, canActivate: [AuthGuardService] },
   //{ path: '**', component: EventListComponent },
-  { path: 'users/:userid', component: UserProfileComponent },
-  { path: 'users/:useriid/participatedEvents', component: UserEventsComponent }
+  { path: 'users', component: UserListComponent},
+  { path: 'users/:userid', component: UserProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'users/:useriid/participatedEvents', component: UserEventsComponent, canActivate: [AuthGuardService] }
 ]
 
 @NgModule({
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     AppComponent,
     EventsComponent,
     EventListComponent,
+    UserListComponent,
     NavBarComponent,
     AddEventComponent,
     EventDetailComponent,

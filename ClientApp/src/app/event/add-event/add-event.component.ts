@@ -4,6 +4,9 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angula
 import { EventsService } from 'src/app/services/events.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { Event } from 'src/app/model/event';
+import { UserInEvent } from 'src/app/model/userinevent';
+import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-add-event',
@@ -15,10 +18,18 @@ export class AddEventComponent implements OnInit {
   addEventForm: FormGroup;
   eventList: any[];
 
+  eventId: number;
+  userinevent: UserInEvent = {
+    eventId: 0,
+    userId: 0
+  }
+
   constructor(private router: Router,
               private fb: FormBuilder,
               public eventsService: EventsService,
-              private alertify: AlertifyService) { }
+              private alertify: AlertifyService,
+              private userService: UserService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.resetForm();
@@ -53,6 +64,7 @@ export class AddEventComponent implements OnInit {
         this.resetForm(form);
         this.alertify.success("Successfully added!");
         this.router.navigate(['/']);
+        //this.addOrganizer(eventid, userid);
       },
       err => {
         console.log(err);
@@ -68,6 +80,20 @@ export class AddEventComponent implements OnInit {
       this.alertify.error("Not all fields are filled.");
     }*/
   }
+
+  /*addOrganizer(eventid:number, userid:number) {
+    this.userinevent = {
+      eventId: Number(eventid),
+      userId: Number(userid)
+    }
+    this.userService.joinToEvent(this.userinevent).subscribe(
+      data => {
+        console.log(data);
+      }, err => {
+        console.log(err);
+      }
+    );
+  }*/
 
   mapEvent(): void {
     this.event.id = this.eventsService.newEventId();
@@ -102,5 +128,9 @@ export class AddEventComponent implements OnInit {
 
   get startDate() {
     return this.addEventForm.get('StartDate') as FormControl;
+  }
+
+  get currentUserId() {
+    return this.authService.currentUser.id;
   }
 }

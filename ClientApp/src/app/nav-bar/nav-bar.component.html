@@ -9,9 +9,9 @@
       <li class="nav-item">
         <a class="nav-link" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" routerLink="/events">Events<span class="sr-only">(current)</span></a>
       </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
-      </li>-->
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" (click)="getUsers()">Users</a>
+      </li>
       <li *ngIf="isOrganizer()" class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="addEvent">Add Event</a>
       </li>

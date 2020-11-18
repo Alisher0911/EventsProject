@@ -1332,7 +1332,7 @@
       "outputPath": "/Users/alisher/Projects/Events/Events.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/alisher/.nuget/NuGet/NuGet.Config"
+        "/Users/alisher/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"

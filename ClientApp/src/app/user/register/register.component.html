@@ -9,45 +9,46 @@
         <div class="form-group col-12">
             <label for="fullName" class="form-label">Full Name</label>
             <input type="text" class="form-control" name="FullName" #FullName="ngModel" [(ngModel)]="userService.formData.FullName" required>
-            <!--<span *ngIf="!fullName.valid && (fullName.touched || userSubmitted)" class="error-block">
+            <span *ngIf="!FullName.valid && FullName.touched" class="error-block">
               This field is required.
-            </span>-->
+            </span>
         </div>
 
         <div class="form-group col-12">
           <label for="email" class="form-label">Email</label>
-          <input type="text" class="form-control" name="Email" #Email="ngModel" [(ngModel)]="userService.formData.Email" required>
-          <!--<span *ngIf="!email.valid && (email.touched || userSubmitted)" class="error-block">
-            <span *ngIf="email.hasError('required')">This field is required.</span>
-            <span *ngIf="email.hasError('email')">Invalid email.</span>
-          </span>-->
+          <input type="text" class="form-control" name="Email" #Email="ngModel" [(ngModel)]="userService.formData.Email" required minlength="6">
+          <span *ngIf="!Email.valid && Email.touched" class="error-block">
+            <span *ngIf="Email.hasError('required')">This field is required.</span>
+            <span *ngIf="Email.hasError('email')">Invalid email.</span>
+            <span *ngIf="Email.errors.minlength">Email must be at least 8 characters.</span>
+          </span>
         </div>
 
         <div class="form-group col-12">
           <label for="passwrod" class="form-label">Password</label>
           <input type="password" class="form-control" name="Password" #Password="ngModel" [(ngModel)]="userService.formData.Password" required minlength="8">
-          <!--<span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
-            <span *ngIf="password.errors['required']">This field is required.</span>
-            <span *ngIf="password.errors.minlength">Password must be at least 8 characters.</span>
-          </span>-->
+          <span *ngIf="!Password.valid && Password.touched" class="error-block">
+            <span *ngIf="Password.errors['required']">This field is required.</span>
+            <span *ngIf="Password.errors.minlength">Password must be at least 8 characters.</span>
+          </span>
         </div>
 
-        <div class="form-group col-12">
+        <!--<div class="form-group col-12">
           <label for="cpassword" class="form-label">Confirm Password</label>
           <input type="password" class="form-control" name="confirmPassword">
-          <!--<span *ngIf="!confirmPassword.valid && (confirmPassword.touched || userSubmitted)" class="error-block">
+          <span *ngIf="!confirmPassword.valid && confirmPassword.touched" class="error-block">
             <span *ngIf="confirmPassword.hasError('required')">Confirm password.</span>
           </span>
-          <span *ngIf="registrationForm.hasError('notMatched') && confirmPassword.valid" class="error-block">Password is not matched.</span>-->
-        </div>
+          <span *ngIf="registrationForm.hasError('notMatched') && confirmPassword.valid" class="error-block">Password is not matched.</span>
+        </div>-->
 
         <div class="form-group col-12">
           <label for="mobile" class="form-label">Mobile</label>
-          <input type="text" class="form-control" name="PhoneNumber" #PhoneNumber="ngModel" [(ngModel)]="userService.formData.PhoneNumber" required>
-          <!--<span *ngIf="!phoneNumber.valid && (phoneNumber.touched || userSubmitted)" class="error-block">
-            <span *ngIf="phoneNumber.errors['required']">This field is required.</span>
-            <span *ngIf="phoneNumber.errors.minlength || phoneNumber.errors.maxlength">Phone Number must be 11 characters.</span>
-          </span>-->
+          <input type="text" class="form-control" name="PhoneNumber" #PhoneNumber="ngModel" [(ngModel)]="userService.formData.PhoneNumber" required minlength="11" maxlength="11">
+          <span *ngIf="!PhoneNumber.valid && PhoneNumber.touched" class="error-block">
+            <span *ngIf="PhoneNumber.errors['required']">This field is required.</span>
+            <span *ngIf="PhoneNumber.errors.minlength || PhoneNumber.errors.maxlength">Phone Number must be 11 characters.</span>
+          </span>
         </div>
 
         <div class="custom-control custom-radio custom-control-inline">
@@ -60,7 +61,7 @@
         </div>
 
         <div class="form-group col-12 text-center mt-3">
-          <button type="submit" class="btn btn-primary">Register</button>
+          <button [disabled]="!Email.valid || !FullName.valid || !Password.valid || !PhoneNumber.valid" type="submit" class="btn btn-primary">Register</button>
           <button type="reset" class="btn btn-secondary ml-2">Reset</button>
         </div>
       </form>

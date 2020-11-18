@@ -1,59 +1,35 @@
 ﻿<Properties StartupConfiguration="{1B8899FB-C195-4EB8-BF80-4466AB7B6BBB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Events.Infrastructure/Repositories/UserInEventRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Events.API/Controllers/UsersController.cs">
     <Files>
-      <File FileName="Events.API/Startup.cs" Line="18" Column="36" />
-      <File FileName="Events.API/appsettings.json" Line="1" Column="1" />
-      <File FileName="Events.API/Properties/launchSettings.json" Line="1" Column="1" />
-      <File FileName="Events.API/Controllers/EventsController.cs" Line="100" Column="70" />
-      <File FileName="Events.API/Controllers/AuthController.cs" Line="71" Column="47" />
+      <File FileName="Events.API/Startup.cs" Line="41" Column="22" />
+      <File FileName="Events.API/appsettings.json" />
+      <File FileName="Events.API/Properties/launchSettings.json" />
+      <File FileName="Events.API/Controllers/EventsController.cs" />
+      <File FileName="Events.API/Controllers/AuthController.cs" />
       <File FileName="Events.Infrastructure/Repositories/AuthRepository.cs" />
       <File FileName="Events.Core/DTOs/UserRegisterDTO.cs" />
-      <File FileName="Events.Core/Entities/User.cs" Line="19" Column="6" />
-      <File FileName="Events.API/Program.cs" Line="16" Column="1" />
-      <File FileName="Events.Infrastructure/Repositories/EventRepository.cs" Line="1" Column="1" />
+      <File FileName="Events.Core/Entities/User.cs" />
+      <File FileName="Events.API/Program.cs" />
+      <File FileName="Events.Infrastructure/Repositories/EventRepository.cs" />
       <File FileName="Events.Core/DTOs/EventCreateDTO.cs" />
-      <File FileName="Events.Infrastructure/Context/DatabaseContext.cs" Line="1" Column="1" />
-      <File FileName="Events.Core/Interfaces/IEventRepository.cs" Line="1" Column="1" />
-      <File FileName="Events.Core/Entities/UserInEvent.cs" Line="6" Column="9" />
-      <File FileName="Events.Infrastructure/Repositories/UserInEventRepository.cs" Line="14" Column="42" />
+      <File FileName="Events.Infrastructure/Context/DatabaseContext.cs" />
+      <File FileName="Events.Core/Interfaces/IEventRepository.cs" />
+      <File FileName="Events.Core/Entities/UserInEvent.cs" />
+      <File FileName="Events.Infrastructure/Repositories/UserInEventRepository.cs" />
       <File FileName="Events.Core/Interfaces/IUserRepository.cs" />
       <File FileName="Events.Core/Interfaces/IAuthRepository.cs" />
-      <File FileName="Events.API/Controllers/UsersController.cs" Line="20" Column="9" />
-      <File FileName="Events.Core/Entities/Event.cs" Line="15" Column="61" />
-      <File FileName="Events.Core/DTOs/EventDTO.cs" Line="5" Column="6" />
-      <File FileName="Events.Core/DTOs/UserLoginDTO.cs" Line="1" Column="1" />
-      <File FileName="Events.Core/DTOs/UserDTO.cs" Line="12" Column="1" />
-      <File FileName="Events.Core/Interfaces/IUserInEventRepository.cs" Line="12" Column="2" />
-      <File FileName="Events.Core/DTOs/UserInEventDTO.cs" Line="7" Column="40" />
-      <File FileName="Events.Core/Profiles/EventProfile.cs" Line="14" Column="54" />
-      <File FileName="Events.Infrastructure/Migrations/20201117131941_new3.cs" Line="1" Column="1" />
-      <File FileName="Events.Infrastructure/Migrations/20201117131941_new3.Designer.cs" Line="1" Column="1" />
-      <File FileName="Events.Infrastructure/Repositories/UserRepository.cs" Line="1" Column="1" />
+      <File FileName="Events.API/Controllers/UsersController.cs" Line="68" Column="29" />
+      <File FileName="Events.Core/Entities/Event.cs" />
+      <File FileName="Events.Core/DTOs/EventDTO.cs" />
+      <File FileName="Events.Core/DTOs/UserLoginDTO.cs" />
+      <File FileName="Events.Core/DTOs/UserDTO.cs" />
+      <File FileName="Events.Core/Interfaces/IUserInEventRepository.cs" />
+      <File FileName="Events.Core/DTOs/UserInEventDTO.cs" />
+      <File FileName="Events.Core/Profiles/EventProfile.cs" />
+      <File FileName="Events.Infrastructure/Migrations/20201117131941_new3.cs" />
+      <File FileName="Events.Infrastructure/Migrations/20201117131941_new3.Designer.cs" />
+      <File FileName="Events.Infrastructure/Repositories/UserRepository.cs" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Events" expanded="True">
-            <Node name="Events.API" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Properties" expanded="True" />
-            </Node>
-            <Node name="Events.Core" expanded="True">
-              <Node name="DTOs" expanded="True" />
-              <Node name="Entities" expanded="True" />
-              <Node name="Interfaces" expanded="True" />
-              <Node name="Profiles" expanded="True" />
-            </Node>
-            <Node name="Events.Infrastructure" expanded="True">
-              <Node name="Context" expanded="True" />
-              <Node name="Repositories" expanded="True">
-                <Node name="UserInEventRepository.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

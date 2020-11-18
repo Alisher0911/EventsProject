@@ -27,6 +27,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/users/' + this.authService.currentUser.id + '/participatedEvents'], {relativeTo: this.route});
   }
 
+  getUsers() {
+    this.router.navigate(['/users']);
+  }
+
   isOrganizer():boolean {
     return this.authService.currentUser.role == 'Organizer'? true : false;
   }

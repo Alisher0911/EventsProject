@@ -34,11 +34,11 @@ namespace Events.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddControllersWithViews()
+            /*services.AddControllersWithViews()
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.WriteIndented = true;
-                });
+                });*/
 
             services.AddCors(options =>
             {
@@ -82,18 +82,10 @@ namespace Events.API
                 };
             });
 
-            /*services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
-                        ValidateIssuer = true,
-                        ValidateAudience = true
-                    };
-                });*/
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

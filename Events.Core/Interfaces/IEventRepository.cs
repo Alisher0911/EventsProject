@@ -13,6 +13,6 @@ namespace Events.Core.Interfaces
         Task<IEnumerable<Event>> GetEventsByUser(int userId);
 
         Task<Event> CreateEvent(Event evt);
-        Task<bool> DeleteEvent(int eventId);
+        Task DeleteEvent(int eventId);
     }
 }
